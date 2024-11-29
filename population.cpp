@@ -14,7 +14,7 @@ Population::Population(string target_str, int target_size, int size)
     pop_size_ = size;
 
     // create <pop_size> number of inviduals in starting generation
-    for (size_t i = 0; i < pop_size_; ++i)
+    for (int i = 0; i < pop_size_; ++i)
     {
         addIndividual(target_len_);
 
@@ -32,14 +32,14 @@ void Population::mutatePopulation()
 
 string Population::printString()
 {
-    
+
     return nullptr;
 }
 
 void Population::addIndividual(int gene_size)
 {
     cout << "Adding Individual" << endl;
-    Individual* indiv = new Individual(gene_size);
+    Individual* indiv = new Individual(gene_size, target_);
     population_list.push_back(indiv);
 
 }

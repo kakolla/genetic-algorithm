@@ -7,11 +7,11 @@
 class Individual
 {
 public:
-    Individual(int gene_size);
+    Individual(int gene_size, std::string target);
     void mutateIndividual();
 
 
-    int getFitness(std::string target);
+    void calcFitness();
 
     void crossOver();   
 
@@ -21,6 +21,8 @@ public:
 
     std::vector<std::string> genes;
     int gene_size_;
+    std::string target_;
+    int total_fitness_;
 
 };
 

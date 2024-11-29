@@ -29,6 +29,7 @@ int main()
     for (size_t i = 0 ; i < target.size(); i++)
     {
         pop.population_list[i]->print();
+        cout << pop.population_list[i]->total_fitness_ << endl;;
     }
     // evaluate fitness of population
     // int fitness = -1;

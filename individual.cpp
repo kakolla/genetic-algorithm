@@ -2,14 +2,17 @@
 #include <vector>
 #include <iostream>
 #include <cstdlib>
+#include <cmath>
 
 
 using namespace std;
 
-Individual::Individual(int gene_size)
+Individual::Individual(int gene_size, string target)
 {
     cout << "Creating individual with gene size" << gene_size << endl;
     gene_size_ = gene_size;
+    target_ = target;
+    total_fitness_ = 0;
     for (int i = 0; i < gene_size_; ++i)
     {
         // generate random genes initially
@@ -19,6 +22,9 @@ Individual::Individual(int gene_size)
         genes.push_back(nucleotide);
     }
 
+    // calculate fitness
+    calcFitness();
+    
 
 }
 
@@ -38,13 +44,19 @@ void Individual::mutateIndividual()
 
 }
 
-int Individual::getFitness(string target)
+void Individual::calcFitness()
 {
     // distance from the actual target string
+    
+    
+    for (int i = 0; i < genes.size(); i++)
+    {
+        // compare char values at ith index and add up distances
+        total_fitness_ += abs(target_.at(i) - genes[i][0]); 
+
+    }
 
 
-
-    return -1;
 }
 
 void Individual::crossOver()
