@@ -10,6 +10,8 @@ public:
     Population(std::string target_str, int target_size, int size);
 
 
+    void selectAlivePopulation(int ratio);
+
     void mutatePopulation();
 
     void addIndividual(int gene_size);

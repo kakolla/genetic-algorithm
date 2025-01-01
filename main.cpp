@@ -21,7 +21,7 @@ int main()
     // initialize time -- number of generations
     // int time = 0;
 
-    // initialize population with 10 individuals
+    // initialize population with 10 individuals & calculate fitness
     Population pop(target, target.size(), 10);
 
 

@@ -23,6 +23,14 @@ Population::Population(string target_str, int target_size, int size)
 
 }
 
+void Population::selectAlivePopulation(int ratio)
+{
+    // 
+
+}
+
+
+
 void Population::mutatePopulation()
 {
     cout << "Mutating population" << endl;
