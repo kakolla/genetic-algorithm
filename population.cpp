@@ -2,19 +2,17 @@
 #include <vector>
 #include <iostream>
 #include <string>
+#include <algorithm>
 
 
 using namespace std;
 
-Population::Population(string target_str, int target_size, int size)
+Population::Population(string target_str, int target_size, int size) 
+: target_(target_str), target_len_(target_size), pop_size_(size)
 {
     cout << "Creating population" << endl;
-    target_ = target_str;
-    target_len_ = target_size;
-    pop_size_ = size;
-
     // create <pop_size> number of inviduals in starting generation
-    for (int i = 0; i < pop_size_; ++i)
+    for (size_t i = 0; i < pop_size_; ++i)
     {
         addIndividual(target_len_);
 
@@ -23,9 +21,21 @@ Population::Population(string target_str, int target_size, int size)
 
 }
 
-void Population::selectAlivePopulation(int ratio)
+void Population::selectAlivePopulation(double ratio)
 {
-    // 
+    int num_individuals = ratio * pop_size_;
+    cout << "Selected " << num_individuals << " as alive" << endl;
+
+    // sort population
+    sort(population_list.begin(), population_list.end(), [](const Individual* a, const Individual* b) {
+        return a->total_fitness_ > b->total_fitness_;
+    });
+    
+    for (int i = 0; i < num_individuals; ++i)
+    {
+        cout << population_list[i]->total_fitness_ << endl;
+    }
+
 
 }
 
@@ -46,7 +56,7 @@ string Population::printString()
 
 void Population::addIndividual(int gene_size)
 {
-    cout << "Adding Individual" << endl;
+    // cout << "Adding Individual" << endl;
     Individual* indiv = new Individual(gene_size, target_);
     population_list.push_back(indiv);
 

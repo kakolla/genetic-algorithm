@@ -10,7 +10,7 @@ public:
     Population(std::string target_str, int target_size, int size);
 
 
-    void selectAlivePopulation(int ratio);
+    void selectAlivePopulation(double ratio);
 
     void mutatePopulation();
 
@@ -21,9 +21,9 @@ public:
 
 
     std::vector<Individual*> population_list;
-    std::string target_;
-    int target_len_;
-    int pop_size_;
+    std::string target_; // target string
+    int target_len_; // length of the target string
+    size_t pop_size_; // size of the population
 
 };
 

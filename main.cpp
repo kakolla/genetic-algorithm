@@ -22,40 +22,50 @@ int main()
     // int time = 0;
 
     // initialize population with 10 individuals & calculate fitness
-    Population pop(target, target.size(), 10);
+    int num_individuals = 10;
+    Population pop(target, target.size(), num_individuals);
 
 
     // print all individuals
-    for (size_t i = 0 ; i < target.size(); i++)
+    cout << "pop_size_: " << pop.pop_size_ << endl;
+    for (size_t i = 0 ; i < pop.pop_size_; i++)
     {
-        pop.population_list[i]->print();
-        cout << pop.population_list[i]->total_fitness_ << endl;;
+        // pop.population_list[i]->print();
+        cout << "fitness: " << pop.population_list[i]->total_fitness_ << endl;
     }
-    // evaluate fitness of population
-    // int fitness = -1;
 
 
     
 
 
     // generate populations until maximum fitness achieved
-    // while (true)
-    // {
-    //     // if ()
-    //     time++;
+    bool sim_complete = false;
+    int generations = 0;
+    while (!sim_complete)
+    {
+        generations++;
         
-    //     // select sub-population that survives 
+        // select sub-population (parents) that survives (highest fitness)
+        double selection_ratio = 0.10;
+        pop.selectAlivePopulation(selection_ratio);
 
-    //     // crossover genes of selected parents
 
-    //     // mutate the children (0.1 rate)
+        // crossover genes of selected parents
 
-    //     // evaluate fitness
+        // mutate the children (0.1 rate) for more variation
 
+        // evaluate fitness
+
+        // select survivors from fitness
+
+
+        if (generations == 1) sim_complete = true;
         
 
-    // }
+    }
 
+
+    cout << "Finished sim" << endl;
 
 
 
