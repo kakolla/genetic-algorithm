@@ -22,7 +22,7 @@ $(BIN_DIR)/population.o: population.cpp
 
 # link
 $(BIN_DIR)/program: $(BIN_DIR)/main.o $(BIN_DIR)/individual.o $(BIN_DIR)/population.o 
-	$(CXX) $(CPPFLAGS) $^ -o $@
+	$(CXX) $(CPPFLAGS) $^ -o program
 
 .PHONY: clean
 clean: 
