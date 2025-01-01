@@ -10,7 +10,9 @@ public:
     Population(std::string target_str, int target_size, int size);
 
 
-    void selectAlivePopulation(double ratio);
+    std::vector<Individual*> selectAlivePopulation(double ratio);
+
+    void crossOverPopulation();
 
     void mutatePopulation();
 

@@ -47,8 +47,9 @@ int main()
         
         // select sub-population (parents) that survives (highest fitness)
         double selection_ratio = 0.10;
-        pop.selectAlivePopulation(selection_ratio);
+        vector<Individual*> sub_population = pop.selectAlivePopulation(selection_ratio);
 
+       
 
         // crossover genes of selected parents
 

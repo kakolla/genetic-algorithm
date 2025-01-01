@@ -21,7 +21,7 @@ Population::Population(string target_str, int target_size, int size)
 
 }
 
-void Population::selectAlivePopulation(double ratio)
+vector<Individual*> Population::selectAlivePopulation(double ratio)
 {
     int num_individuals = ratio * pop_size_;
     cout << "Selected " << num_individuals << " as alive" << endl;
@@ -31,14 +31,23 @@ void Population::selectAlivePopulation(double ratio)
         return a->total_fitness_ > b->total_fitness_;
     });
     
+
+    // select sub population that survives
+    vector<Individual*> selected_individuals;
     for (int i = 0; i < num_individuals; ++i)
     {
-        cout << population_list[i]->total_fitness_ << endl;
+        selected_individuals.push_back(population_list[i]);
     }
 
-
+    return selected_individuals;
 }
 
+
+void Population::crossOverPopulation()
+{
+    
+
+}
 
 
 void Population::mutatePopulation()
