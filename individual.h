@@ -13,7 +13,6 @@ public:
 
     void calcFitness();
 
-    void crossOver();   
 
 
     void print();

@@ -46,12 +46,23 @@ int main()
         generations++;
         
         // select sub-population (parents) that survives (highest fitness)
-        double selection_ratio = 0.10;
+        double selection_ratio = 0.20;
         vector<Individual*> sub_population = pop.selectAlivePopulation(selection_ratio);
 
        
 
         // crossover genes of selected parents
+        Individual* p1 = sub_population[0];
+        Individual* p2 = sub_population[1];
+        p1->print();
+        p2->print();
+        cout << p1->total_fitness_ << endl;
+        cout << p2->total_fitness_ << endl;
+        Individual* child = new Individual(target.size(), target);
+        child->genes = pop.crossOver(p1, p2);
+        child->calcFitness();
+        child->print();
+        cout << child->total_fitness_ << endl;
 
         // mutate the children (0.1 rate) for more variation
 

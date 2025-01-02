@@ -7,11 +7,10 @@
 
 using namespace std;
 
-Individual::Individual(int gene_size, string target)
+Individual::Individual(int gene_size, string target) : 
+gene_size_(gene_size), target_(target)
 {
     cout << "Creating individual with gene size" << gene_size << endl;
-    gene_size_ = gene_size;
-    target_ = target;
     total_fitness_ = 0;
     for (int i = 0; i < gene_size_; ++i)
     {
@@ -47,9 +46,10 @@ void Individual::mutateIndividual()
 void Individual::calcFitness()
 {
     // distance from the actual target string
+    total_fitness_ = 0;
     
     
-    for (int i = 0; i < genes.size(); i++)
+    for (size_t i = 0; i < genes.size(); i++)
     {
         // compare char values at ith index and add up distances
         total_fitness_ += abs(target_.at(i) - genes[i][0]); 
@@ -59,7 +59,3 @@ void Individual::calcFitness()
 
 }
 
-void Individual::crossOver()
-{
-    
-}

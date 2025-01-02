@@ -28,7 +28,7 @@ vector<Individual*> Population::selectAlivePopulation(double ratio)
 
     // sort population
     sort(population_list.begin(), population_list.end(), [](const Individual* a, const Individual* b) {
-        return a->total_fitness_ > b->total_fitness_;
+        return a->total_fitness_ < b->total_fitness_;
     });
     
 
@@ -43,9 +43,48 @@ vector<Individual*> Population::selectAlivePopulation(double ratio)
 }
 
 
-void Population::crossOverPopulation()
+vector<string> Population::crossOver(const Individual* p1, const Individual* p2)
 {
-    
+    if (p1->gene_size_ != p2->gene_size_) throw "different gene sizes for parents";
+
+    int r; // random number to choose which parent's genes crossover
+    vector<string> new_genes(p1->gene_size_, "a");
+    for (int g = 0; g < p1->gene_size_; ++g)
+    {
+        r = rand() % 10;
+        if (r <= 4) new_genes[g] = p1->genes[g];
+        else if (r >= 5) new_genes[g] = p2->genes[g];
+    }
+
+    return new_genes;
+}
+
+void Population::crossOverPopulation(vector<Individual*> sub_population)
+{
+    // Uses uniform crossover
+    // take 2 parents chromosomes and uniformly cross them to produce 2 children chromosomes
+    for (size_t i = 0; i < sub_population.size(); ++i)
+    {
+        if (i+1 < sub_population.size())
+        {
+            Individual* p1 = sub_population[i];
+            Individual* p2 = sub_population[i+1];
+
+            
+            // create child 1
+            vector<string> new_genes = crossOver(p1, p2);
+            Individual* c1 = new Individual(new_genes.size(), target_);
+            c1->genes = new_genes;
+
+            // // create child 2
+            // vector<string> new_genes2 = crossOver(p1, p2);
+            // Individual* c2 = new Individual(new_genes.size(), target_);
+            // c2->genes = new_genes2;
+
+        }
+    }
+
+
 
 }
 
