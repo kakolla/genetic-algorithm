@@ -45,14 +45,14 @@ int main()
     {
         generations++;
         
-        // select sub-population (parents) that survives (highest fitness)
+        // select sub-population (parents) that survives (highest fitness = lowest distance)
         double selection_ratio = 0.20;
         vector<Individual*> sub_population = pop.selectAlivePopulation(selection_ratio);
 
        
 
         // crossover genes of selected parents
-        pop.crossOverPopulation(sub_population); 
+        pop.crossOverPopulation(sub_population, selection_ratio); 
         // does nothing if there's only 1 parent (need 2 parents)
 
 
@@ -61,7 +61,7 @@ int main()
         {
             child->mutateIndividual(0.08);
             // child->print();
-            // cout << child->total_fitness_ << endl;
+            cout << child->total_fitness_ << endl;
         }
         
         

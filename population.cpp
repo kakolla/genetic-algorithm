@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
+#include <cmath>
 
 
 using namespace std;
@@ -72,10 +73,11 @@ vector<string> Population::crossOver(const Individual* p1, const Individual* p2)
     return new_genes;
 }
 
-void Population::crossOverPopulation(vector<Individual*> sub_population)
+void Population::crossOverPopulation(vector<Individual*> sub_population, double ratio)
 {
-    // Uses uniform crossover
-    // take 2 parents chromosomes and uniformly cross them to produce 2 children chromosomes
+    // Uses uniform crossover technique
+    // take 2 parents chromosomes and uniformly cross them 
+    // produces 1/ratio * 2 times more children to repopulate the entire population back to original size
 
     for (size_t i = 0; i < sub_population.size(); i+=2)
     {
@@ -86,20 +88,19 @@ void Population::crossOverPopulation(vector<Individual*> sub_population)
             Individual* p2 = sub_population[i+1];
 
             
-            // create child 1
-            vector<string> new_genes = crossOver(p1, p2);
-            Individual* c1 = new Individual(new_genes.size(), target_);
-            c1->genes = new_genes;
-            c1->calcFitness(); // update fitness
+            // create 1/ratio  * 2 number of children
+            int number_to_reproduce = ceil((1/ratio)) * 2;
+            cout << "sub pop size: " << sub_population.size() << endl;
+            cout << "num to reprod: " << number_to_reproduce << endl;
+            for (int k = 0; k < number_to_reproduce; ++k)
+            {
+                vector<string> new_genes = crossOver(p1, p2);
+                Individual* c1 = new Individual(new_genes.size(), target_);
+                c1->genes = new_genes;
+                c1->calcFitness(); // update fitness
 
-            // create child 2
-            vector<string> new_genes2 = crossOver(p1, p2);
-            Individual* c2 = new Individual(new_genes.size(), target_);
-            c2->genes = new_genes2;
-            c2->calcFitness();
-
-            child_population.push_back(c1);
-            child_population.push_back(c2);
+                child_population.push_back(c1);
+            }
         }
     }
 
