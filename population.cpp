@@ -24,7 +24,7 @@ Population::Population(string target_str, int target_size, int size)
 vector<Individual*> Population::selectAlivePopulation(double ratio)
 {
     int num_individuals = ratio * pop_size_;
-    cout << "Selected " << num_individuals << " as alive" << endl;
+    cout << "Selected " << num_individuals << " as parents" << endl;
 
     // sort population
     sort(population_list.begin(), population_list.end(), [](const Individual* a, const Individual* b) {
@@ -59,14 +59,17 @@ vector<string> Population::crossOver(const Individual* p1, const Individual* p2)
     return new_genes;
 }
 
-void Population::crossOverPopulation(vector<Individual*> sub_population)
+vector<Individual*> Population::crossOverPopulation(vector<Individual*> sub_population)
 {
     // Uses uniform crossover
     // take 2 parents chromosomes and uniformly cross them to produce 2 children chromosomes
-    for (size_t i = 0; i < sub_population.size(); ++i)
+    vector<Individual*> child_population;
+
+    for (size_t i = 0; i < sub_population.size(); i+=2)
     {
         if (i+1 < sub_population.size())
         {
+            // grab 2 parents
             Individual* p1 = sub_population[i];
             Individual* p2 = sub_population[i+1];
 
@@ -75,16 +78,20 @@ void Population::crossOverPopulation(vector<Individual*> sub_population)
             vector<string> new_genes = crossOver(p1, p2);
             Individual* c1 = new Individual(new_genes.size(), target_);
             c1->genes = new_genes;
+            c1->calcFitness(); // update fitness
 
-            // // create child 2
-            // vector<string> new_genes2 = crossOver(p1, p2);
-            // Individual* c2 = new Individual(new_genes.size(), target_);
-            // c2->genes = new_genes2;
+            // create child 2
+            vector<string> new_genes2 = crossOver(p1, p2);
+            Individual* c2 = new Individual(new_genes.size(), target_);
+            c2->genes = new_genes2;
+            c2->calcFitness();
 
+            child_population.push_back(c1);
+            child_population.push_back(c2);
         }
     }
 
-
+    return child_population;
 
 }
 

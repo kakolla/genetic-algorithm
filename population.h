@@ -12,7 +12,7 @@ public:
 
     std::vector<Individual*> selectAlivePopulation(double ratio);
 
-    void crossOverPopulation(std::vector<Individual*> sub_population);
+    std::vector<Individual*> crossOverPopulation(std::vector<Individual*> sub_population);
 
     std::vector<std::string> crossOver(const Individual* p1, const Individual* p2);
 
