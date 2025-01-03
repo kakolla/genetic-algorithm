@@ -17,7 +17,9 @@ gene_size_(gene_size), target_(target)
     {
         // generate random genes initially
 
-        char nucleotide_char = 'a' + (rand()%26);
+        char nucleotide_char = 'a' + (rand()%28);
+        if (nucleotide_char == '{') nucleotide_char = 32; // to generate spaces
+        if (nucleotide_char == '|') nucleotide_char = 10; // to generate newlines
         string nucleotide(1, nucleotide_char); // create string size 1 w/ the character
         genes.push_back(nucleotide);
     }
@@ -52,7 +54,9 @@ void Individual::mutateIndividual(double mut_rate)
         r = rand() % 100;
         if (r < mut_rate * 100) 
         {
-            char nucleotide_char = 'a' + (rand()%26);
+            char nucleotide_char = 'a' + (rand()%28);
+            if (nucleotide_char == '{') nucleotide_char = 32; // to generate spaces
+            if (nucleotide_char == '|') nucleotide_char = 10; // to generate newlines
             string nucleotide(1, nucleotide_char); // create string size 1 w/ the character
             genes[i] = nucleotide;
             // genes[i] = "M";

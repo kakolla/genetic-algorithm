@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string>
 #include <time.h>
+#include <bits/stdc++.h>
 
 #include "population.h"
 #include "individual.h"
@@ -13,9 +14,17 @@ int main()
 {
     srand(time(NULL));
     ifstream file("target.txt");
-    string target;
-    file >> target;
+    string target = "";
+    string line;
+    while (getline(file, line))
+    {
+        target += line;
+        target += '\n';
+    }
+    // file >> target;
+    transform(target.begin(), target.end(), target.begin(), ::tolower);
     cout << target << endl;
+    
 
 
     // initialize time -- number of generations
@@ -68,6 +77,19 @@ int main()
             child->mutateIndividual(0.05);
             // child->print();
             // cout << child->total_fitness_ << endl;
+        }
+
+        if (pop.checkComplete(pop.child_population))
+        {
+            // cout << "prniting sub population" << endl;
+            // for (auto& elem : sub_population)
+            // {
+            //     elem->print();
+            //     cout << elem->total_fitness_ << endl;
+            // }
+            sim_complete = true;
+            cout << "num of generations: " << generations << endl;
+
         }
 
     
@@ -126,18 +148,7 @@ int main()
         
         // if (generations == 500)
         // if (1)
-        if (pop.checkComplete(pop.population_list))
-        {
-            // cout << "prniting sub population" << endl;
-            // for (auto& elem : sub_population)
-            // {
-            //     elem->print();
-            //     cout << elem->total_fitness_ << endl;
-            // }
-            sim_complete = true;
-            cout << "num of generations: " << generations << endl;
-
-        }
+        
     }
     
 
