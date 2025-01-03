@@ -43,37 +43,70 @@ int main()
     int generations = 0;
     while (!sim_complete)
     {
-        generations++;
         
         // select sub-population (parents) that survives (highest fitness = lowest distance)
         double selection_ratio = 0.20;
         vector<Individual*> sub_population = pop.selectAlivePopulation(selection_ratio);
 
+        cout << "Printing sub population picked" << endl;
+        for (auto elem : sub_population)
+        {
+            elem->print();
+        }
+        cout << endl;
+
+        
        
 
-        // crossover genes of selected parents
+        // crossover genes of selected parents and add to child_population list
         pop.crossOverPopulation(sub_population, selection_ratio); 
-        // does nothing if there's only 1 parent (need 2 parents)
 
 
-        // mutate the children (0.08 rate) to explore newer solutions
+        // mutate the children (0.08 rate) to explore newer solutions & evaluate fitness
         for (auto child : pop.child_population)
         {
             child->mutateIndividual(0.08);
             // child->print();
-            cout << child->total_fitness_ << endl;
+            // cout << child->total_fitness_ << endl;
         }
+
+    
         
+
         
+        // select child survivors with highest fitness for the next generation
+        // add children to the population and clear out child_population list
+        for (auto child : pop.child_population)
+        {
+            pop.population_list.push_back(child);
 
-        // evaluate fitness
+        }
+        while (!pop.child_population.empty()) // remember auto would create a copy
+        {
+            pop.child_population.pop_back();
+        }
 
-        // select survivors from fitness
+
+        cout << "prniting sub population" << endl;
+        for (auto& elem : sub_population)
+        {
+            elem->print();
+        }
+
+        // select new parents
+        sub_population = pop.selectAlivePopulation(selection_ratio);
+        
+        cout << "prniting sub population" << endl;
+        for (auto& elem : sub_population)
+        {
+            elem->print();
+            cout << elem->total_fitness_ << endl;
+        }
 
 
+        generations++;
         if (generations == 1) sim_complete = true;
         
-
     }
 
 

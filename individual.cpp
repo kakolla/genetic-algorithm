@@ -11,7 +11,7 @@ using namespace std;
 Individual::Individual(int gene_size, string target) : 
 gene_size_(gene_size), target_(target)
 {
-    cout << "Creating individual with gene size" << gene_size << endl;
+    // cout << "Creating individual with gene size" << gene_size << endl;
     total_fitness_ = 0;
     for (int i = 0; i < gene_size_; ++i)
     {
@@ -60,7 +60,7 @@ void Individual::mutateIndividual(double mut_rate)
         }
 
     }
-    calcFitness();
+    calcFitness(); // update fitness
 
 }
 
