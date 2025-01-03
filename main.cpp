@@ -94,7 +94,7 @@ int main()
         // }
 
         // select new parents
-        sub_population = pop.selectAlivePopulation(selection_ratio);
+        // sub_population = pop.selectAlivePopulation(selection_ratio);
         
         // cout << "prniting sub population" << endl;
         // for (auto& elem : sub_population)
@@ -124,17 +124,17 @@ int main()
         // if (pop.checkComplete(milk)) break;
 
         
-        if (generations == 500)
+        // if (generations == 500)
         // if (1)
-        // if (pop.checkComplete(sub_population))
+        if (pop.checkComplete(pop.population_list))
         {
-            cout << "prniting sub population" << endl;
-            for (auto& elem : sub_population)
-            {
-                elem->print();
-                cout << elem->total_fitness_ << endl;
-            }
-            // sim_complete = true;
+            // cout << "prniting sub population" << endl;
+            // for (auto& elem : sub_population)
+            // {
+            //     elem->print();
+            //     cout << elem->total_fitness_ << endl;
+            // }
+            sim_complete = true;
             cout << "num of generations: " << generations << endl;
 
         }

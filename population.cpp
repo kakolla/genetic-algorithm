@@ -158,7 +158,11 @@ bool Population::checkComplete(vector<Individual*>& list)
             total += indiv->genes[i];
         }
         // cout << "total : " << total << endl;
-        if (total == target_) return true;
+        if (total == target_) {
+            cout << "Found word: " << total << endl;
+            return true;
+        }
+
         
     }
     return false;
