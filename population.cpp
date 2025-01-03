@@ -21,6 +21,19 @@ Population::Population(string target_str, int target_size, int size)
 
 }
 
+Population::~Population()
+{
+    for (auto elem : child_population)
+    {
+        delete elem;
+    }
+
+    for (auto elem : population_list)
+    {
+        delete elem;
+    }
+}
+
 vector<Individual*> Population::selectAlivePopulation(double ratio)
 {
     int num_individuals = ratio * pop_size_;
@@ -59,11 +72,10 @@ vector<string> Population::crossOver(const Individual* p1, const Individual* p2)
     return new_genes;
 }
 
-vector<Individual*> Population::crossOverPopulation(vector<Individual*> sub_population)
+void Population::crossOverPopulation(vector<Individual*> sub_population)
 {
     // Uses uniform crossover
     // take 2 parents chromosomes and uniformly cross them to produce 2 children chromosomes
-    vector<Individual*> child_population;
 
     for (size_t i = 0; i < sub_population.size(); i+=2)
     {
@@ -91,7 +103,7 @@ vector<Individual*> Population::crossOverPopulation(vector<Individual*> sub_popu
         }
     }
 
-    return child_population;
+
 
 }
 
