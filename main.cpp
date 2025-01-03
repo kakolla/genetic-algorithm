@@ -27,9 +27,6 @@ int main()
     
 
 
-    // initialize time -- number of generations
-    // int time = 0;
-
     // initialize population with 10 individuals & calculate fitness
     int num_individuals = 200;
     Population pop(target, target.size(), num_individuals);
@@ -37,11 +34,6 @@ int main()
 
     // print all individuals
     cout << "pop_size_: " << pop.pop_size_ << endl;
-    // for (size_t i = 0 ; i < pop.pop_size_; i++)
-    // {
-    //     // pop.population_list[i]->print();
-    //     cout << "fitness: " << pop.population_list[i]->total_fitness_ << endl;
-    // }
 
 
     
@@ -57,6 +49,8 @@ int main()
         double selection_ratio = 0.10;
         vector<Individual*> sub_population = pop.selectAlivePopulation(selection_ratio);
 
+
+        // Display progress
         cout << "Printing sub population picked" << endl;
         for (auto elem : sub_population)
         {
@@ -81,12 +75,6 @@ int main()
 
         if (pop.checkComplete(pop.child_population))
         {
-            // cout << "prniting sub population" << endl;
-            // for (auto& elem : sub_population)
-            // {
-            //     elem->print();
-            //     cout << elem->total_fitness_ << endl;
-            // }
             sim_complete = true;
             cout << "num of generations: " << generations << endl;
 
@@ -95,7 +83,6 @@ int main()
     
         
 
-        
         // select child survivors with highest fitness for the next generation
         // add children to the population and clear out child_population list
         for (auto& child : pop.child_population)
@@ -109,52 +96,17 @@ int main()
         }
 
 
-        // cout << "prniting sub population" << endl;
-        // for (auto& elem : sub_population)
-        // {
-        //     elem->print();
-        // }
-
-        // select new parents
-        // sub_population = pop.selectAlivePopulation(selection_ratio);
-        
-        // cout << "prniting sub population" << endl;
-        // for (auto& elem : sub_population)
-        // {
-        //     elem->print();
-        //     cout << elem->total_fitness_ << endl;
-        // }
 
 
         generations++;
 
-        // vector<Individual*> milk;
-        // Individual* mm = new Individual(target.size(), target);
-        // for (int i=  0; i < target.size(); ++i)
-        // {
-        //     mm->genes[i] = "c";
-        // }
-        // Individual* mm2 = new Individual(target.size(), target);
-        // for (int i=  0; i < target.size(); ++i)
-        // {
-        //     mm2->genes[i] = target.at(i);
-        // }
-        // cout << endl;
-
-        // milk.push_back(mm);
-        // milk.push_back(mm2);
-        // if (pop.checkComplete(milk)) break;
-
-        
-        // if (generations == 500)
-        // if (1)
         
     }
     
 
 
 
-    cout << "Finished sim" << endl;
+    cout << "Finished generating" << endl;
 
 
 
