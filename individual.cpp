@@ -43,7 +43,7 @@ const void Individual::print()
 // mutates the individual's genes based on the rate
 void Individual::mutateIndividual(double mut_rate)
 {
-    cout << "Mutating individual" << endl;
+    // cout << "Mutating individual" << endl;
     int r;
 
     // mutating the individual nucleotides aka letters

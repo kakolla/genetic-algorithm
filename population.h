@@ -24,6 +24,8 @@ public:
 
     std::string printString();
 
+    bool checkComplete(std::vector<Individual*>& list); // check if target has been reached
+
 
 
     std::vector<Individual*> population_list;

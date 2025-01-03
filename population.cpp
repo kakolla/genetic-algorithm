@@ -38,7 +38,7 @@ Population::~Population()
 vector<Individual*> Population::selectAlivePopulation(double ratio)
 {
     int num_individuals = ratio * pop_size_;
-    cout << "Selected " << num_individuals << " as parents" << endl;
+    // cout << "Selected " << num_individuals << " as parents" << endl;
 
     // sort population
     sort(population_list.begin(), population_list.end(), [](const Individual* a, const Individual* b) {
@@ -101,8 +101,8 @@ void Population::crossOverPopulation(vector<Individual*>& sub_population, double
             
             // create 1/ratio  * 2 number of children
             int number_to_reproduce = ceil((1/ratio)) * 2;
-            cout << "sub pop size: " << sub_population.size() << endl;
-            cout << "num to reprod: " << number_to_reproduce << endl;
+            // cout << "sub pop size: " << sub_population.size() << endl;
+            // cout << "num to reprod: " << number_to_reproduce << endl;
             for (int k = 0; k < number_to_reproduce; ++k)
             {
                 vector<string> new_genes = crossOver(p1, p2);
@@ -129,7 +129,7 @@ void Population::crossOverPopulation(vector<Individual*>& sub_population, double
 
 void Population::mutatePopulation()
 {
-    cout << "Mutating population" << endl;
+    // cout << "Mutating population" << endl;
 
 }
 
@@ -146,4 +146,20 @@ void Population::addIndividual(int gene_size)
     Individual* indiv = new Individual(gene_size, target_);
     population_list.push_back(indiv);
 
+}
+
+bool Population::checkComplete(vector<Individual*>& list)
+{
+    for (auto& indiv : list)
+    {
+        string total = "";
+        for (int i = 0; i < indiv->gene_size_; ++i)
+        {
+            total += indiv->genes[i];
+        }
+        // cout << "total : " << total << endl;
+        if (total == target_) return true;
+        
+    }
+    return false;
 }
