@@ -52,29 +52,18 @@ int main()
        
 
         // crossover genes of selected parents
-        // Individual* p1 = sub_population[0];
-        // Individual* p2 = sub_population[1];
-        // p1->print();
-        // p2->print();
-        // cout << p1->total_fitness_ << endl;
-        // cout << p2->total_fitness_ << endl;
-        // Individual* child = new Individual(target.size(), target);
-        // child->genes = pop.crossOver(p1, p2);
-        // child->calcFitness();
-        // child->print();
-        // cout << child->total_fitness_ << endl;
-
+        vector<Individual*> child_population = pop.crossOverPopulation(sub_population); 
         // does nothing if there's only 1 parent (need 2 parents)
-        vector<Individual*> child_population = pop.crossOverPopulation(sub_population);
-        for (auto elem : child_population)
+
+
+        // mutate the children (0.08 rate) to explore newer solutions
+        for (auto child : child_population)
         {
-            elem->print();
-            cout << elem->total_fitness_ << endl;
-            cout << endl;
+            child->mutateIndividual(0.08);
+            
         }
-
-
-        // mutate the children (0.1 rate) for more variation
+        
+        
 
         // evaluate fitness
 

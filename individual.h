@@ -8,14 +8,14 @@ class Individual
 {
 public:
     Individual(int gene_size, std::string target);
-    void mutateIndividual();
+    void mutateIndividual(double mut_rate);
 
 
     void calcFitness();
 
 
 
-    void print();
+    const void print();
 
 
     std::vector<std::string> genes;
