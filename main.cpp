@@ -15,6 +15,7 @@ int main(int argc, char* argv[])
     // Format: ./program <targetfile.txt> <num_individuals> <selection_ratio> <mutation_rate>
     if (argc < 5) {
         cout << "Not enough arguments" << endl;
+        cout.flush();
         return -1;
     }
     srand(time(NULL));
@@ -30,6 +31,7 @@ int main(int argc, char* argv[])
     // file >> target;
     transform(target.begin(), target.end(), target.begin(), ::tolower);
     cout << target << endl;
+    cout.flush();
     
 
 
@@ -41,6 +43,7 @@ int main(int argc, char* argv[])
 
     // print all individuals
     cout << "pop_size_: " << pop.pop_size_ << endl;
+    cout.flush();
 
 
     
@@ -52,6 +55,7 @@ int main(int argc, char* argv[])
     while (!sim_complete)
     {
         cout << "---GENERATION " << generations << "---" << endl;
+        cout.flush();
         // select sub-population (parents) that survives (highest fitness = lowest distance)
         // double selection_ratio = 0.10;
         double selection_ratio = stod(argv[3]);
@@ -60,6 +64,7 @@ int main(int argc, char* argv[])
 
         // Display progress
         cout << "Printing sub population picked" << endl;
+        cout.flush();
         for (auto elem : sub_population)
         {
             elem->print();
@@ -87,6 +92,7 @@ int main(int argc, char* argv[])
         {
             sim_complete = true;
             cout << "num of generations: " << generations << endl;
+            cout.flush();
 
         }
 
@@ -117,6 +123,7 @@ int main(int argc, char* argv[])
 
 
     cout << "Finished generating" << endl;
+    cout.flush();
 
 
 
