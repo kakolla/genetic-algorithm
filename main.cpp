@@ -10,10 +10,16 @@
 
 
 using namespace std;
-int main()
+int main(int argc, char* argv[])
 {
+    // Format: ./program <targetfile.txt> <num_individuals> <selection_ratio> <mutation_rate>
+    if (argc < 5) {
+        cout << "Not enough arguments" << endl;
+        return -1;
+    }
     srand(time(NULL));
-    ifstream file("target.txt");
+    // ifstream file("target.txt");
+    ifstream file(argv[1]);
     string target = "";
     string line;
     while (getline(file, line))
@@ -28,7 +34,8 @@ int main()
 
 
     // initialize population with 10 individuals & calculate fitness
-    int num_individuals = 200;
+    // int num_individuals = 200;
+    int num_individuals = stoi(argv[2]);
     Population pop(target, target.size(), num_individuals);
 
 
@@ -46,7 +53,8 @@ int main()
     {
         cout << "---GENERATION " << generations << "---" << endl;
         // select sub-population (parents) that survives (highest fitness = lowest distance)
-        double selection_ratio = 0.10;
+        // double selection_ratio = 0.10;
+        double selection_ratio = stod(argv[3]);
         vector<Individual*> sub_population = pop.selectAlivePopulation(selection_ratio);
 
 
@@ -66,9 +74,11 @@ int main()
 
 
         // mutate the children (0.08 rate) to explore newer solutions & evaluate fitness
+        double mutation_rate = stod(argv[4]);
         for (auto& child : pop.child_population)
         {
-            child->mutateIndividual(0.05);
+            // child->mutateIndividual(0.05);
+            child->mutateIndividual(mutation_rate);
             // child->print();
             // cout << child->total_fitness_ << endl;
         }
