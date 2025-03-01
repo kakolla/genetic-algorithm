@@ -14,7 +14,7 @@ wss.on('connection', (ws) => {
         // run the c++ algo
         const cppProcess = spawn('../program.exe', ["target.txt", 200, 0.1, 0.05]);
 
-        // send each iterations output
+        // send each iterations output from stdout
         cppProcess.stdout.on('data', (data) => {
             ws.send(data.toString());
         });
@@ -26,7 +26,7 @@ wss.on('connection', (ws) => {
 
         cppProcess.on('close', (code) => {
             console.log('C++ process exited with exit code: ', code);
-            ws.send('__DONE__');
+            // ws.send('__DONE__');
         });
 
         ws.on('close', () => {

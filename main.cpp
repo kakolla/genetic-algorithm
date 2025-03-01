@@ -42,8 +42,8 @@ int main(int argc, char* argv[])
 
 
     // print all individuals
-    cout << "pop_size_: " << pop.pop_size_ << endl;
-    cout.flush();
+    // cout << "pop_size_: " << pop.pop_size_ << endl;
+    // cout.flush();
 
 
     
@@ -54,8 +54,8 @@ int main(int argc, char* argv[])
     int generations = 0;
     while (!sim_complete)
     {
-        cout << "---GENERATION " << generations << "---" << endl;
-        cout.flush();
+        // cout << "---GENERATION " << generations << "---" << endl;
+        // cout.flush();
         // select sub-population (parents) that survives (highest fitness = lowest distance)
         // double selection_ratio = 0.10;
         double selection_ratio = stod(argv[3]);
@@ -63,13 +63,15 @@ int main(int argc, char* argv[])
 
 
         // Display progress
-        cout << "Printing sub population picked" << endl;
+        // cout << "Printing sub population picked" << endl;
+        // cout.flush();
+        // for (auto elem : sub_population)
+        // {
+        //     elem->print();
+        // }
+        // cout.flush();
+        sub_population[0]->print();
         cout.flush();
-        for (auto elem : sub_population)
-        {
-            elem->print();
-        }
-        cout << endl;
 
         
        
@@ -91,7 +93,7 @@ int main(int argc, char* argv[])
         if (pop.checkComplete(pop.child_population))
         {
             sim_complete = true;
-            cout << "num of generations: " << generations << endl;
+            cout << "Num of generations: " << generations << " ";
             cout.flush();
 
         }
@@ -120,10 +122,6 @@ int main(int argc, char* argv[])
     }
     
 
-
-
-    cout << "Finished generating" << endl;
-    cout.flush();
 
 
 

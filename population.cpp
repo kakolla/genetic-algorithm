@@ -159,7 +159,7 @@ bool Population::checkComplete(vector<Individual*>& list)
         }
         // cout << "total : " << total << endl;
         if (total == target_) {
-            cout << "Found word: " << total << endl;
+            cout << "Found word: " << total << "";
             return true;
         }
 
