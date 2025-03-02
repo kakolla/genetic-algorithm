@@ -37,7 +37,6 @@ wss.on('connection', (ws) => {
 
         cppProcess.on('close', (code) => {
             console.log('C++ process exited with exit code: ', code);
-            // ws.send('__DONE__');
         });
 
         ws.on('close', () => {
